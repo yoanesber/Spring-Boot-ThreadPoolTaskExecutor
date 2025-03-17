@@ -122,23 +122,16 @@ The technology used in this project are:
 ## 📋 Project Structure
 The project is organized into the following package structure:
 ```bash
-- async
-- config
-- controller
-- dto
-- entity
-- service
-  \---impl
+async-executor/
+│── src/main/java/com/yoanesber/spring/async_executor/
+│   ├── async/                 # Defines task executor.
+│   ├── config/                # Configures ThreadPoolTaskExecutor (corePoolSize, maxPoolSize, queueCapacity, etc.).
+│   ├── controller/            # Contains REST controllers handling Forgot Password and Order Service requests.
+│   ├── dto/                   # Data Transfer Objects (DTOs) for request/response payloads.
+│   ├── entity/                # Contains Order and OrderDetail classes representing order data.
+│   ├── service/               # Business logic layer
+│   │   ├── impl/              # Implementation of services
 ```
-
-### Explanation of Each Package
-- **async**: Defines task executor.
-- **config**: Configures ThreadPoolTaskExecutor (corePoolSize, maxPoolSize, queueCapacity, etc.).
-- **controller**: Contains REST controllers handling Forgot Password and Order Service requests.
-- **dto**: Data Transfer Objects (DTOs) for request/response payloads.
-- **entity**: Contains Order and OrderDetail classes representing order data.
-- **service**: Defines business logic and application functionality.
-    - **impl**: Implements the service interfaces.
 ---
 
 ## 📂 Environment Configuration
@@ -205,7 +198,7 @@ mvn spring-boot:run
 `POST http://localhost:8081/api/v1/order/process/{orderId}` - Process order asynchronously.
 
 **Response**
-```bash
+```json
 Order processed successfully
 ```
 
@@ -213,14 +206,14 @@ Order processed successfully
 `POST http://localhost:8081/api/v1/password/forgot-password` - Initiate forgot password request (async processing).
 
 **Request Body:**
-```bash
+```json
 {
     "email": "jhonny@myemail.com"
 }
 ```
 
 **Response:**
-```bash
+```json
 Password reset email sent successfully
 ```
 ---
