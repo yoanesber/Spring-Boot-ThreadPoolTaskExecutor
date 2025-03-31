@@ -169,7 +169,7 @@ Order processed successfully
 ```
 
 ### Forgot Password Service
-`POS`T http://localhost:8081/api/v1/password/forgot-password - Initiate forgot password request (async processing).  
+`POST` http://localhost:8081/api/v1/password/forgot-password - Initiate forgot password request (async processing).  
 
 **Request Body:**
 ```json
