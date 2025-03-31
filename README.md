@@ -1,15 +1,14 @@
 # ThreadPoolTaskExecutor in Spring Boot
 
-## 🚀 Overview
-This project demonstrates the implementation of ThreadPoolTaskExecutor in a Spring Boot application. It provides RESTful APIs to trigger asynchronous execution of tasks. The project includes two services:
-- Order Service: Handles order processing asynchronously.
-- Forgot Password Service: Manages forgot password requests asynchronously.
+## 📖 Overview
+This project demonstrates the implementation of **ThreadPoolTaskExecutor** in a Spring Boot application. It provides **RESTful APIs** to trigger **asynchronous execution** of tasks. The project includes two services:
+- **Order Service** – Handles order processing asynchronously.
+- **Forgot Password Service** – Manages forgot password requests asynchronously.
 
----
 
-## ThreadPoolTaskExecutor Configuration
+### 🔄 ThreadPoolTaskExecutor Configuration
 
-`ThreadPoolTaskExecutor` is a class provided by Spring Framework to handle asynchronous tasks in Spring. It is a powerful asynchronous task execution mechanism that allows you to manage a pool of worker threads efficiently. The ThreadPoolTaskExecutor is configured with various properties to optimize performance:
+**ThreadPoolTaskExecutor** is a class provided by Spring Framework to handle **asynchronous tasks** in Spring. It is a powerful asynchronous task execution mechanism that allows you to **manage a pool of worker threads** efficiently. The ThreadPoolTaskExecutor is configured with various properties to optimize performance:  
 
 1. **corePoolSize**
    - **Description**: The number of threads to keep in the pool, even if they are idle.
@@ -59,40 +58,11 @@ This project demonstrates the implementation of ThreadPoolTaskExecutor in a Spri
 9. **awaitTerminationSeconds**
    - **Description**: The maximum time to wait for the executor to terminate.
 
-### Example Configuration in `SchedulerConfig.java`
-
+#### Example Configuration in `SchedulerConfig.java`
 ```java
 @Configuration
 @EnableAsync
 public class AsyncConfig implements AsyncConfigurer {
-
-    @Value("${async.executor.core.pool.size}")
-    private int corePoolSize;
-
-    @Value("${async.executor.max.pool.size}")
-    private int maxPoolSize;
-
-    @Value("${async.executor.queue.capacity}")
-    private int queueCapacity;
-
-    @Value("${async.executor.thread.name.prefix}")
-    private String threadNamePrefix;
-
-    @Value("${async.executor.allow.core.thread.timeout}")
-    private boolean allowCoreThreadTimeout;
-    
-    @Value("${async.executor.keep.alive.seconds}")
-    private int keepAliveSeconds;
-
-    @Value("${async.executor.rejected.execution.handler}")
-    private String rejectedExecutionHandler;
-
-    @Value("${async.executor.wait.for.tasks.to.complete.on.shutdown}")
-    private boolean waitForTasksToCompleteOnShutdown;
-
-    @Value("${async.executor.await.termination.seconds}")
-    private int awaitTerminationSeconds;
-    
     @Override
     public Executor getAsyncExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
@@ -112,38 +82,38 @@ public class AsyncConfig implements AsyncConfigurer {
 ```
 ---
 
-## ✨Tech Stack
-The technology used in this project are:
+## 🤖 Tech Stack
+The technology used in this project are:  
 - `Spring Boot Starter Web` – Provides essential components for building RESTful APIs.
 - `ThreadPoolTaskExecutor` – Manages a pool of worker threads efficiently for executing tasks asynchronously.
 - `Spring Retry` – Handles retry mechanisms for failed operations.
 ---
 
-## 📋 Project Structure
-The project is organized into the following package structure:
+## 🏗️ Project Structure
+The project is organized into the following package structure:  
 ```bash
 async-executor/
 │── src/main/java/com/yoanesber/spring/async_executor/
-│   ├── async/                 # Defines task executor.
-│   ├── config/                # Configures ThreadPoolTaskExecutor (corePoolSize, maxPoolSize, queueCapacity, etc.).
-│   ├── controller/            # Contains REST controllers handling Forgot Password and Order Service requests.
-│   ├── dto/                   # Data Transfer Objects (DTOs) for request/response payloads.
-│   ├── entity/                # Contains Order and OrderDetail classes representing order data.
-│   ├── service/               # Business logic layer
-│   │   ├── impl/              # Implementation of services
+│   ├── 📂async/                 # Defines task executor.
+│   ├── 📂config/                # Configures ThreadPoolTaskExecutor (corePoolSize, maxPoolSize, queueCapacity, etc.).
+│   ├── 📂controller/            # Contains REST controllers handling Forgot Password and Order Service requests.
+│   ├── 📂dto/                   # Data Transfer Objects (DTOs) for request/response payloads.
+│   ├── 📂entity/                # Contains Order and OrderDetail classes representing order data.
+│   ├── 📂service/               # Business logic layer
+│   │   ├── 📂impl/              # Implementation of services
 ```
 ---
 
-## 📂 Environment Configuration
-Configuration values are stored in `.env.development` and referenced in `application.properties`.
+## ⚙ Environment Configuration
+Configuration values are stored in `.env.development` and referenced in `application.properties`.  
 
-Example `.env.development` file content:
+Example `.env.development` file content:  
 ```properties
-# application
+# Application properties
 APP_PORT=8081
 SPRING_PROFILES_ACTIVE=development
 
-# ThreadPoolTaskExecutor
+# ThreadPoolTaskExecutor properties
 ASYNC_CORE_POOL_SIZE=5
 ASYNC_MAX_POOL_SIZE=10
 ASYNC_QUEUE_CAPACITY=100
@@ -155,14 +125,14 @@ ASYNC_WAIT_FOR_TASKS_TO_COMPLETE_ON_SHUTDOWN=true
 ASYNC_AWAIT_TERMINATION_SECONDS=10
 ```
 
-Example `application.properties` file content:
+Example `application.properties` file content:  
 ```properties
-# application
+# Application properties
 spring.application.name=async-executor
 server.port=${APP_PORT}
 spring.profiles.active=${SPRING_PROFILES_ACTIVE}
 
-# ThreadPoolTaskExecutor
+# ThreadPoolTaskExecutor properties
 async.executor.core.pool.size=${ASYNC_CORE_POOL_SIZE}
 async.executor.max.pool.size=${ASYNC_MAX_POOL_SIZE}
 async.executor.queue.capacity=${ASYNC_QUEUE_CAPACITY}
@@ -175,35 +145,31 @@ async.executor.await.termination.seconds=${ASYNC_AWAIT_TERMINATION_SECONDS}
 ```
 ---
 
-## 🛠 Installation & Setup
-A step by step series of examples that tell you how to get a development env running.
-1. Clone the repository
+## 🛠️ Installation & Setup
+A step by step series of examples that tell you how to get a development env running.  
+1. Ensure you have **Git installed on your Windows** machine, then clone the repository to your local environment:
 ```bash
 git clone https://github.com/yoanesber/Spring-Boot-ThreadPoolTaskExecutor.git
+cd Spring-Boot-ThreadPoolTaskExecutor
 ```
 
-2. Navigate to the project directory
-```bash
-cd <project_directory>
-```
-
-4. Build and run the application
+2. Build and run the application
 ```bash
 mvn spring-boot:run
 ```
 ---
 
-## 🔗 API Endpoints
+## 🌐 API Endpoints
 ### Order Service
-`POST http://localhost:8081/api/v1/order/process/{orderId}` - Process order asynchronously.
+`POST` http://localhost:8081/api/v1/order/process/{orderId} - Process order asynchronously.  
 
-**Response**
+**Successful Response:**
 ```json
 Order processed successfully
 ```
 
 ### Forgot Password Service
-`POST http://localhost:8081/api/v1/password/forgot-password` - Initiate forgot password request (async processing).
+`POS`T http://localhost:8081/api/v1/password/forgot-password - Initiate forgot password request (async processing).  
 
 **Request Body:**
 ```json
@@ -212,10 +178,11 @@ Order processed successfully
 }
 ```
 
-**Response:**
+**Successful Response:**
 ```json
 Password reset email sent successfully
 ```
 ---
 
-This project follows best practices in Spring Boot development, ensuring efficiency and maintainability.
+## 🔗 Related Repositories
+- Scheduled Tasks using ThreadPoolTaskScheduler GitHub Repository, check out [Spring Boot Scheduled Tasks with ThreadPoolTaskScheduler](https://github.com/yoanesber/Spring-Boot-ThreadPoolTaskScheduler).
