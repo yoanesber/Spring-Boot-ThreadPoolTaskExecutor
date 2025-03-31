@@ -10,30 +10,26 @@ This project demonstrates the implementation of **ThreadPoolTaskExecutor** in a 
 
 **ThreadPoolTaskExecutor** is a class provided by Spring Framework to handle **asynchronous tasks** in Spring. It is a powerful asynchronous task execution mechanism that allows you to **manage a pool of worker threads** efficiently. The ThreadPoolTaskExecutor is configured with various properties to optimize performance:  
 
-1. **corePoolSize**
-   - **Description**: The number of threads to keep in the pool, even if they are idle.
+1. **corePoolSize** – The number of threads to keep in the pool, even if they are idle.
    - If the number of threads is less than the core, a new thread is created to handle the task.
    - If the number of threads is greater than the core, the task is added to the queue.
 
-2. **maxPoolSize**
-   - **Description**: The maximum number of threads to allow in the pool.
+2. **maxPoolSize** – The maximum number of threads to allow in the pool.
    - This limit prevents the thread pool from creating too many threads, which could overwhelm the system.
    - When tasks are submitted, the thread pool starts with corePoolSize threads.
    - If all corePoolSize threads are busy, new tasks are added to the queue.
    - If the queue is full, additional threads are created up to maxPoolSize.
    - Once maxPoolSize is reached, new tasks cannot be executed immediately and are handled based on the rejection policy.
 
-3. **queueCapacity**
-   - **Description**: The maximum number of tasks that can be queued.
+3. **queueCapacity** – The maximum number of tasks that can be queued.
    - It acts as a buffer that holds tasks waiting to be executed.
    - If all corePoolSize threads are busy, the task goes into the queue (if there is space).
    - If the number of tasks exceeds the queue capacity, additional threads are created up to maxPoolSize.
 
-4. **threadNamePrefix**
-   - **Description**: The prefix to use for the names of the threads.
+4. **threadNamePrefix** – The prefix to use for the names of the threads.
 
 5. **allowCoreThreadTimeout**
-   - **Description**: Whether to allow core threads to time out and terminate if no tasks arrive within the keepAliveSeconds time.
+   - Whether to allow core threads to time out and terminate if no tasks arrive within the keepAliveSeconds time.
    - By default, core threads are always kept alive, but enabling allowCoreThreadTimeOut(true) allows them to be removed when not needed.
    - If allowCoreThreadTimeOut(false), core threads stay alive forever, even if idle.
    - If allowCoreThreadTimeOut(true), core threads are removed if they remain idle for keepAliveSeconds.
@@ -41,11 +37,10 @@ This project demonstrates the implementation of **ThreadPoolTaskExecutor** in a 
    - This can help reduce resource consumption when the number of tasks is low.
 
 6. **keepAliveSeconds**
-   - **Description**: When the number of threads is greater than the core, this is the maximum time that excess idle threads will wait for new tasks before terminating.
+   - When the number of threads is greater than the core, this is the maximum time that excess idle threads will wait for new tasks before terminating.
    - Controls how long extra threads stay idle before being removed.
 
-7. **rejectedExecutionHandler**
-   - **Description**: The handler to use when the executor cannot accept a task.
+7. **rejectedExecutionHandler** – The handler to use when the executor cannot accept a task.
    - There are four types of RejectedExecutionHandler:
         - AbortPolicy: Throws a RejectedExecutionException.
         - CallerRunsPolicy: Executes the task on the caller's thread.
@@ -53,10 +48,9 @@ This project demonstrates the implementation of **ThreadPoolTaskExecutor** in a 
         - DiscardOldestPolicy: Discards the oldest task in the queue and adds the new task.
 
 8. **waitForTasksToCompleteOnShutdown**
-   - **Description**: Whether to wait for scheduled tasks to complete on shutdown.
+   - Whether to wait for scheduled tasks to complete on shutdown.
 
-9. **awaitTerminationSeconds**
-   - **Description**: The maximum time to wait for the executor to terminate.
+9. **awaitTerminationSeconds** – The maximum time to wait for the executor to terminate.
 
 #### Example Configuration in `SchedulerConfig.java`
 ```java
